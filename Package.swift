@@ -30,19 +30,35 @@ import PackageDescription
 let project_dir = "\(#file)".dropLast("/Package.swift".count)
 
 let package = Package(
-    name: "brotli",
+    name: "Brotli",
     products: [
-        .library(name: "brotli", targets: ["brotli"]),
+        .library(name: "Brotli", targets: ["Brotli"]),
     ],
     targets: [
         .target(
-            name: "brotli",
-            dependencies: [],
+            name: "Brotli",
+            dependencies: [
+                "google_brotli"
+            ],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "BrotliTests",
+            dependencies: [
+                "Brotli"
+            ]
+        ),
+        .target(
+            name: "google_brotli",
             path: "./dependencies/brotli/c",
             exclude: {
-                guard var files = try? FileManager.default.subpathsOfDirectory(atPath: "\(project_dir)/dependencies/brotli/c") else { return [] }
-                files = files.filter { $0.contains(".") && !$0.hasSuffix(".h") && !$0.hasSuffix(".c") }
-                return files
+                do {
+                    return try FileManager.default
+                        .subpathsOfDirectory(atPath: "\(project_dir)/dependencies/brotli/c")
+                        .filter { $0.contains(".") && !$0.hasSuffix(".h") && !$0.hasSuffix(".c") }
+                } catch {
+                    return []
+                }
             }(),
             sources: [
                 "common",
