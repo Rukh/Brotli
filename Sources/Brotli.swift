@@ -5,8 +5,8 @@
 //  Created by Dmitry Gulyagin on 08.08.2021.
 //
 
-import Foundation
 import google_brotli
+import struct Foundation.Data
 
 /// Wrapper for C lib from google/brotli repo
 public class Brotli {

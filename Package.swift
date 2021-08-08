@@ -24,10 +24,7 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
 import PackageDescription
-
-let project_dir = "\(#file)".dropLast("/Package.swift".count)
 
 let package = Package(
     name: "Brotli",
@@ -37,34 +34,21 @@ let package = Package(
     targets: [
         .target(
             name: "Brotli",
-            dependencies: [
-                "google_brotli"
-            ],
+            dependencies: ["google_brotli"],
             path: "Sources"
         ),
         .testTarget(
             name: "BrotliTests",
-            dependencies: [
-                "Brotli"
-            ]
+            dependencies: ["Brotli"]
         ),
         .target(
             name: "google_brotli",
             path: "./dependencies/brotli/c",
-            exclude: {
-                do {
-                    return try FileManager.default
-                        .subpathsOfDirectory(atPath: "\(project_dir)/dependencies/brotli/c")
-                        .filter { $0.contains(".") && !$0.hasSuffix(".h") && !$0.hasSuffix(".c") }
-                } catch {
-                    return []
-                }
-            }(),
             sources: [
                 "common",
                 "dec",
                 "enc",
-                "include",
+                "brotli/include",
             ]
         ),
     ]

@@ -6,8 +6,7 @@
 //
 
 import XCTest
-import Brotli
-import Foundation
+@testable import Brotli
 
 class Test: XCTestCase {
     
