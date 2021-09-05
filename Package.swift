@@ -27,7 +27,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Brotli",
+    name: "brotli",
     products: [
         .library(name: "Brotli", targets: ["Brotli"]),
     ],
