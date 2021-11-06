@@ -48,7 +48,7 @@ let package = Package(
                 "common",
                 "dec",
                 "enc",
-                "brotli/include",
+                "include",
             ]
         ),
     ]
