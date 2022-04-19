@@ -8,7 +8,7 @@
 import XCTest
 @testable import Brotli
 
-class Test: XCTestCase {
+final class Test: XCTestCase {
     
     private func makeTestData(size: Int = 1_000_000) -> Data {
         let encodedBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
